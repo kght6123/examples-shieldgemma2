@@ -7,7 +7,7 @@ model = ShieldGemma2ForImageClassification.from_pretrained(model_id, device_map=
 processor = AutoProcessor.from_pretrained(model_id)
 
 # ラボ子ちゃんの露出があるイラスト
-url = "./20_thinking.png"
+url = "20_thinking.png"
 image = Image.open(url)
 
 inputs = processor(images=[image], return_tensors="pt").to(model.device)
