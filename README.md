@@ -61,11 +61,17 @@ tensor([[4.1718e-07, 1.0000e+00],
 
 # lab1
 
-
+tensor([[4.2510e-07, 1.0000e+00],
+        [6.5711e-02, 9.3429e-01],
+        [3.5839e-07, 1.0000e+00]], grad_fn=<SoftmaxBackward0>)
 
 # lab2
 
+tensor([[4.4427e-08, 1.0000e+00],
+        [2.3781e-03, 9.9762e-01],
+        [1.1112e-07, 1.0000e+00]], grad_fn=<SoftmaxBackward0>)
 
+# PNG画像はJPEGに変換して実行する必要がありそう！！
 
 pip freeze > requirements.txt # 依存関係の出力
 deactivate
