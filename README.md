@@ -26,9 +26,20 @@ nohup python shieldgemma2-buildin.py > python.log 2>&1 &
 #        [6.7467e-09, 1.0000e+00],
 #        [3.1827e-17, 1.0000e+00]], grad_fn=<SoftmaxBackward0>)
 
+# user	5m50.343s
+
 python shieldgemma2-custom.py
 
+# tensor([[5.2849e-11, 1.0000e+00],
+#        [3.0857e-09, 1.0000e+00],
+#        [3.7217e-09, 1.0000e+00]], grad_fn=<SoftmaxBackward0>)
+
+# user	5m50.628s
+
+# M3 Pro 32GBでは足りない
 # RuntimeError: MPS backend out of memory (MPS allocated: 42.33 GB, other allocations: 3.00 GB, max allowed: 45.90 GB). Tried to allocate 3.00 GB on private pool. Use PYTORCH_MPS_HIGH_WATERMARK_RATIO=0.0 to disable upper limit for memory allocations (may cause system failure).
+
+# 同じ画像なら何度実行しても同じ結果になりました
 
 pip freeze > requirements.txt # 依存関係の出力
 deactivate
