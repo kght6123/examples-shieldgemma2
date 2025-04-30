@@ -45,6 +45,12 @@ pip freeze > requirements.txt # 依存関係の出力
 deactivate
 ```
 
+## TODO
+
+- [ ] 他の危険な画像をHuggingFaceから指定して実行する
+- [ ] サンプルコードの処理内容を整理する
+- [ ] 資料を作る
+
 ## 参考資料
 
 - [Hugging Face Transformers Installation Guide](https://huggingface.co/docs/transformers/ja/installation)
