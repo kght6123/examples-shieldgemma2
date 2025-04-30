@@ -7,8 +7,8 @@ model = ShieldGemma2ForImageClassification.from_pretrained(model_id, device_map=
 processor = AutoProcessor.from_pretrained(model_id)
 
 # ラボ子ちゃんの露出がないイラスト
-url = "https://github.com/toranoana/special/blob/master/maid-engineers/41_event.png?raw=true"
-image = Image.open(requests.get(url, stream=True).raw)
+url = "./41_event.png"
+image = Image.open(url)
 
 inputs = processor(images=[image], return_tensors="pt").to(model.device)
 

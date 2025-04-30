@@ -41,6 +41,32 @@ python shieldgemma2-custom.py
 
 # 同じ画像なら何度実行しても同じ結果になりました
 
+# paku1
+
+tensor([[1.3077e-08, 1.0000e+00],
+        [1.1047e-02, 9.8895e-01],
+        [1.0645e-11, 1.0000e+00]], grad_fn=<SoftmaxBackward0>)
+
+# paku2
+
+tensor([[1.0985e-08, 1.0000e+00],
+        [3.1323e-04, 9.9969e-01],
+        [1.8727e-12, 1.0000e+00]], grad_fn=<SoftmaxBackward0>)
+
+# paku3
+
+tensor([[4.1718e-07, 1.0000e+00],
+        [1.3430e-03, 9.9866e-01],
+        [1.1559e-09, 1.0000e+00]], grad_fn=<SoftmaxBackward0>)
+
+# lab1
+
+
+
+# lab2
+
+
+
 pip freeze > requirements.txt # 依存関係の出力
 deactivate
 ```
