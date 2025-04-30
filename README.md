@@ -13,12 +13,11 @@
 
 ```sh
 cd ./examples-shieldgemma2
+rm -rf .venv
 python3 -m venv .venv
 source .venv/bin/activate
-pip install "transformers[torch]" #  Transformers と PyTorch のインストール
+pip install "transformers[torch]" Pillow #  Transformers と PyTorch、Pillow のインストール
 python -c "from transformers import pipeline; print(pipeline('sentiment-analysis')('we love you'))" # 確認
-
-pip install Pillow
 python shieldgemma2-buildin.py
 
 # RuntimeError: MPS backend out of memory (MPS allocated: 42.33 GB, other allocations: 3.00 GB, max allowed: 45.90 GB). Tried to allocate 3.00 GB on private pool. Use PYTORCH_MPS_HIGH_WATERMARK_RATIO=0.0 to disable upper limit for memory allocations (may cause system failure).
