@@ -1,4 +1,15 @@
 from PIL import Image
+"""
+このスクリプトは、Hugging Face Transformersライブラリの
+ShieldGemma2ForImageClassificationモデルを使用して画像を分類する方法を示します。
+
+次の手順を実行します。
+1. 事前学習済みの 'google/shieldgemma-2-4b-it' モデルとその関連プロセッサをロードします。
+2. 指定されたURLから画像（蜂）をダウンロードします。
+3. ロードされたプロセッサを使用して画像を前処理します。
+4. 前処理された画像に対してShieldGemma2モデルを使用して推論を実行します。
+5. 結果の分類確率をコンソールに出力します。
+"""
 import requests
 from transformers import AutoProcessor, ShieldGemma2ForImageClassification
 
