@@ -8,10 +8,10 @@ messages = [
     {
         "role": "user",
         "content": [
-            {
-                "type": "image",
-                "image": "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/bee.jpg",
-            },
+            # {
+            #     "type": "image",
+            #     "image": "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/bee.jpg",
+            # },
             {"type": "text", "text": "This image is of a bee."},
         ],
     }
