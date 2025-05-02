@@ -88,3 +88,5 @@ deactivate
 
 - [Hugging Face Transformers Installation Guide](https://huggingface.co/docs/transformers/ja/installation)
 - https://huggingface.co/docs/transformers/main/model_doc/shieldgemma2
+- https://huggingface.co/google/shieldgemma-2b
+- https://huggingface.co/google/shieldgemma-2-4b-it
