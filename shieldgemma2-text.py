@@ -1,5 +1,5 @@
 import torch
-from transformers import AutoProcessor, AutoModelForPreTraining # Use the appropriate model class
+from transformers import AutoProcessor, ShieldGemma2ForImageClassification # Use the appropriate model class
 from PIL import Image # Pillow is needed even if not directly used here, as processor might depend on it
 
 # --- 1. モデルとプロセッサのロード (CPU指定) ---
@@ -9,7 +9,7 @@ device = "cpu"
 try:
     processor = AutoProcessor.from_pretrained(model_id)
     # Replace AutoModelForPreTraining with the specific class if known
-    model = AutoModelForPreTraining.from_pretrained(model_id)
+    model = ShieldGemma2ForImageClassification.from_pretrained(model_id)
     model.to(device)
     model.eval() # Set model to evaluation mode
     print(f"モデルとプロセッサをロードしました。実行デバイス: {device}")
