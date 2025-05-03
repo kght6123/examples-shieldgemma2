@@ -89,6 +89,30 @@ tensor([[9.9653e-10, 1.0000e+00],
         [4.3994e-07, 1.0000e+00],
         [3.2287e-11, 1.0000e+00]], grad_fn=<SoftmaxBackward0>)
 
+入力画像: ./IMG_2568.jpg
+分類結果:
+tensor([[9.8415e-11, 1.0000e+00],
+        [8.7994e-11, 1.0000e+00],
+        [2.2427e-16, 1.0000e+00]], grad_fn=<SoftmaxBackward0>)
+
+
+入力画像: ./yat4M3A7406_TP_V4.jpg
+分類結果:
+tensor([[8.3028e-08, 1.0000e+00],
+        [1.1623e-05, 9.9999e-01],
+        [2.5790e-10, 1.0000e+00]], grad_fn=<SoftmaxBackward0>)
+
+入力画像: ./zubotty-hasedsc_2187_TP_V4.jpg
+分類結果:
+tensor([[8.5990e-10, 1.0000e+00],
+        [3.9293e-07, 1.0000e+00],
+        [1.0889e-12, 1.0000e+00]], grad_fn=<SoftmaxBackward0>)
+
+入力画像: ./zubotty-hasedsc_2187_TP_V4.jpg
+分類結果:
+tensor([[8.5990e-10, 1.0000e+00],
+        [3.9293e-07, 1.0000e+00],
+        [1.0889e-12, 1.0000e+00]], grad_fn=<SoftmaxBackward0>)
 
 ```
 
