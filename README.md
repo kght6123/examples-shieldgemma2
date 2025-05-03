@@ -5,6 +5,7 @@
 ## 前提条件
 
 - huggingface-cli login でログインしてください
+- https://huggingface.co/google/shieldgemma-2-4b-it でモデルへのアクセス許可を取得してください
 
 
 ## 環境の作り方
@@ -15,7 +16,7 @@
 cd ./examples-shieldgemma2
 rm -rf .venv
 python3 -m venv .venv
-source .venv/bin/activate
+source .venv/bin/activate or .venv\Scripts\activate.bat
 pip install "transformers[torch]" Pillow #  Transformers と PyTorch、Pillow のインストール
 python -c "from transformers import pipeline; print(pipeline('sentiment-analysis')('we love you'))" # 確認
 
@@ -73,8 +74,22 @@ tensor([[4.4427e-08, 1.0000e+00],
 
 # PNG画像はJPEGに変換して実行する必要がありそう！！
 
+python shieldgemma2.py ./huusenPAKE5506_TP_V4.jpg
+
 pip freeze > requirements.txt # 依存関係の出力
 deactivate
+```
+
+## 結果
+
+```
+入力画像: ./huusenPAKE5506_TP_V4.jpg
+分類結果:
+tensor([[9.9653e-10, 1.0000e+00],
+        [4.3994e-07, 1.0000e+00],
+        [3.2287e-11, 1.0000e+00]], grad_fn=<SoftmaxBackward0>)
+
+
 ```
 
 ## TODO
@@ -90,3 +105,7 @@ deactivate
 - https://huggingface.co/docs/transformers/main/model_doc/shieldgemma2
 - https://huggingface.co/google/shieldgemma-2b
 - https://huggingface.co/google/shieldgemma-2-4b-it
+- https://ai.google.dev/responsible/docs/safeguards/shieldgemma?hl=ja
+- https://colab.research.google.com/github/google/generative-ai-docs/blob/main/site/en/responsible/docs/safeguards/shieldgemma_on_huggingface.ipynb?hl=ja#scrollTo=av03uUlhHeYq
+- https://colab.research.google.com/github/google/generative-ai-docs/blob/main/site/en/responsible/docs/safeguards/shieldgemma2_on_huggingface.ipynb?hl=ja#scrollTo=2b40722aa1a9
+- https://github.com/google/generative-ai-docs/blob/main/site/en/responsible/docs/safeguards/shieldgemma2_on_huggingface.ipynb
