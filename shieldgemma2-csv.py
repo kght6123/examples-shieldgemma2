@@ -11,10 +11,9 @@ import glob
 # カスタムポリシーの定義
 CUSTOM_POLICIES = {
     "explicit_genitalia": "The image contains clearly visible and explicit human sexual organs (e.g., penis, vagina, anus).",
-    "genitalia_covered_or_absent": "Any depicted human sexual organs are covered by clothing, obscured (e.g., by mosaic, blur), or the image contains no human sexual organs at all."
 }
-# 評価するポリシーの順序を定義
-POLICIES_TO_EVALUATE = ["explicit_genitalia", "genitalia_covered_or_absent", "dangerous", "sexual", "violence"]
+# 評価するポリシーの順序を定義 https://github.com/huggingface/transformers/blob/3b3ebcec4077f124f2cd0ec3cd5d028dc352a3e5/src/transformers/models/shieldgemma2/convert_shieldgemma2_weights_orbax_to_hf.py#L63
+POLICIES_TO_EVALUATE = ["explicit_genitalia", "dangerous", "sexual", "violence"]
 
 # CSVヘッダー
 CSV_HEADER = [
@@ -111,8 +110,8 @@ def main():
                 probabilities = output.probabilities[0] 
 
                 # POLICIES_TO_EVALUATE の順序に基づいて確率を取得
-                porno_score_raw = probabilities[POLICIES_TO_EVALUATE.index("explicit_genitalia")].item()
-                genitalia_covered_score_raw = probabilities[POLICIES_TO_EVALUATE.index("genitalia_covered_or_absent")].item()
+                porno_score_raw = probabilities[POLICIES_TO_EVALUATE.index("sexual")].item()
+                genitalia_covered_score_raw = probabilities[POLICIES_TO_EVALUATE.index("explicit_genitalia")].item()
 
                 porno_result = porno_score_raw > 0.5
                 # CSVのNotGenitalは「覆われているか、性器がない」ポリシーの結果
@@ -128,8 +127,8 @@ def main():
 
                 # Content列の文字列を生成
                 content_details = []
-                content_details.append(f"Porno=ResultDetail(value={porno_result}, score={porno_score_percent}, reasonMessage='{CUSTOM_POLICIES['explicit_genitalia']}')")
-                content_details.append(f"NotGenital=ResultDetail(value={not_genital_result}, score={not_genital_score_percent}, reasonMessage='{CUSTOM_POLICIES['genitalia_covered_or_absent']}')")
+                content_details.append(f"Porno=ResultDetail(value={porno_result}, score={porno_score_percent}, reasonMessage=sexual')")
+                content_details.append(f"NotGenital=ResultDetail(value={not_genital_result}, score={not_genital_score_percent}, reasonMessage='{CUSTOM_POLICIES['explicit_genitalia']}')")
                 content_str = " ".join(content_details)
                 
                 # Prompt列の内容 (使用したポリシーの概要)
@@ -149,9 +148,9 @@ def main():
                     not_genital_result,
                     porno_score_percent,
                     not_genital_score_percent,
-                    CUSTOM_POLICIES["explicit_genitalia"], # Porno Reason Message
-                    CUSTOM_POLICIES["genitalia_covered_or_absent"], # NotGenital Reason Message
-                    "" # Visible Genital Type (ShieldGemma2では直接取得不可)
+                    "", # Porno Reason Message
+                    "", # NotGenital Reason Message
+                    "" # Visible Genital Type
                 ]
                 csv_writer.writerow(row)
 
