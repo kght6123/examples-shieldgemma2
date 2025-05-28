@@ -110,8 +110,8 @@ def main():
                 print(f"Probabilities for {image_path}: {output.probabilities.tolist()}")
                 
                 # POLICIES_TO_EVALUATE の順序に基づいて確率を取得
-                porno_score_raw = output.probabilities[POLICIES_TO_EVALUATE.index("sexual")].item()
-                genitalia_covered_score_raw = output.probabilities[POLICIES_TO_EVALUATE.index("explicit_genitalia")].item()
+                porno_score_raw = output.probabilities[POLICIES_TO_EVALUATE.index("sexual")]
+                genitalia_covered_score_raw = output.probabilities[POLICIES_TO_EVALUATE.index("explicit_genitalia")]
 
                 porno_result = porno_score_raw[0] > 0.5
                 # CSVのNotGenitalは「覆われているか、性器がない」ポリシーの結果
