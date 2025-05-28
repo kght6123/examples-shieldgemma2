@@ -116,6 +116,12 @@ tensor([[8.5990e-10, 1.0000e+00],
 
 ```
 
+## CSV
+
+```sh
+python shieldgemma2-csv.py ./images --output_csv rating-20250528.csv
+```
+
 ## TODO
 
 - [x] 他の危険な画像をHuggingFaceから指定して実行する
