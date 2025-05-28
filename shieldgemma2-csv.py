@@ -107,8 +107,11 @@ def main():
                 eval_duration = inference_end - inference_start
                 
                 # output.probabilities は (batch_size, num_policies) の形状
-                probabilities = output.probabilities[0] 
-
+                probabilities = output.probabilities[0]
+                
+                # probabilitiesを出力する
+                print(f"Probabilities for {image_path}: {probabilities.tolist()}")
+                
                 # POLICIES_TO_EVALUATE の順序に基づいて確率を取得
                 porno_score_raw = probabilities[POLICIES_TO_EVALUATE.index("sexual")].item()
                 genitalia_covered_score_raw = probabilities[POLICIES_TO_EVALUATE.index("explicit_genitalia")].item()
