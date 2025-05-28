@@ -119,9 +119,9 @@ tensor([[8.5990e-10, 1.0000e+00],
 ## CSV
 
 ```sh
-python shieldgemma2-csv.py ./images --output_csv rating-20250528.csv
+python -u shieldgemma2-csv.py ./images --output_csv rating-20250528.csv
 # バックググラウンドで実行する場合はnohupを使うと良いでしょう
-nohup python shieldgemma2-csv.py ./images --output_csv rating-20250528.csv > shieldgemma2-csv.log 2>&1 &
+nice -n -20 nohup python -u shieldgemma2-csv.py ./images --output_csv rating-20250528.csv > shieldgemma2-csv.log 2>&1 &
 tail -f shieldgemma2-csv.log
 ```
 
