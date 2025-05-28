@@ -106,22 +106,21 @@ def main():
                 inference_end = time.time()
                 eval_duration = inference_end - inference_start
                 
-                # output.probabilities は (batch_size, num_policies) の形状
-                probabilities = output.probabilities[0]
-                
                 # probabilitiesを出力する
-                print(f"Probabilities for {image_path}: {probabilities.tolist()}")
+                print(f"Probabilities for {image_path}: {output.probabilities.tolist()}")
                 
                 # POLICIES_TO_EVALUATE の順序に基づいて確率を取得
-                porno_score_raw = probabilities[POLICIES_TO_EVALUATE.index("sexual")].item()
-                genitalia_covered_score_raw = probabilities[POLICIES_TO_EVALUATE.index("explicit_genitalia")].item()
+                porno_score_raw = output.probabilities[POLICIES_TO_EVALUATE.index("sexual")].item()
+                genitalia_covered_score_raw = output.probabilities[POLICIES_TO_EVALUATE.index("explicit_genitalia")].item()
 
-                porno_result = porno_score_raw > 0.5
+                porno_result = porno_score_raw[0] > 0.5
                 # CSVのNotGenitalは「覆われているか、性器がない」ポリシーの結果
-                not_genital_result = genitalia_covered_score_raw > 0.5 
+                not_genital_result = genitalia_covered_score_raw[0] > 0.5 
 
-                porno_score_percent = int(porno_score_raw * 100)
-                not_genital_score_percent = int(genitalia_covered_score_raw * 100)
+                porno_score_percent1 = int(porno_score_raw[0] * 100)
+                porno_score_percent2 = int(porno_score_raw[1] * 100)
+                not_genital_score_percent1 = int(genitalia_covered_score_raw[0] * 100)
+                not_genital_score_percent2 = int(genitalia_covered_score_raw[1] * 100)
 
                 created_at_jst = datetime.now(timezone(timedelta(hours=9))).strftime('%Y-%m-%d %H:%M:%S')
                 
@@ -130,8 +129,8 @@ def main():
 
                 # Content列の文字列を生成
                 content_details = []
-                content_details.append(f"Porno=ResultDetail(value={porno_result}, score={porno_score_percent}, reasonMessage=sexual')")
-                content_details.append(f"NotGenital=ResultDetail(value={not_genital_result}, score={not_genital_score_percent}, reasonMessage='{CUSTOM_POLICIES['explicit_genitalia']}')")
+                content_details.append(f"Porno=ResultDetail(value={porno_result}, score={porno_score_percent1}, {porno_score_percent2}, reasonMessage=sexual')")
+                content_details.append(f"NotGenital=ResultDetail(value={not_genital_result}, score={not_genital_score_percent1}, {not_genital_score_percent2}, reasonMessage='{CUSTOM_POLICIES['explicit_genitalia']}')")
                 content_str = " ".join(content_details)
 
                 row = [
@@ -146,10 +145,10 @@ def main():
                     content_str,
                     porno_result,
                     not_genital_result,
-                    porno_score_percent,
-                    not_genital_score_percent,
-                    "", # Porno Reason Message
-                    "", # NotGenital Reason Message
+                    porno_score_percent1,
+                    not_genital_score_percent1,
+                    porno_score_percent2, # Porno Reason Message
+										not_genital_score_percent2, # NotGenital Reason Message
                     "" # Visible Genital Type
                 ]
                 csv_writer.writerow(row)
