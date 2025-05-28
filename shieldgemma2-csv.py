@@ -130,14 +130,11 @@ def main():
                 content_details.append(f"Porno=ResultDetail(value={porno_result}, score={porno_score_percent}, reasonMessage=sexual')")
                 content_details.append(f"NotGenital=ResultDetail(value={not_genital_result}, score={not_genital_score_percent}, reasonMessage='{CUSTOM_POLICIES['explicit_genitalia']}')")
                 content_str = " ".join(content_details)
-                
-                # Prompt列の内容 (使用したポリシーの概要)
-                prompt_str = "; ".join([f"{key}: {CUSTOM_POLICIES[key]}" for key in POLICIES_TO_EVALUATE])
 
                 row = [
                     image_path,
                     model_id,
-                    prompt_str,
+                    CUSTOM_POLICIES['explicit_genitalia'],
                     created_at_jst,
                     f"{total_duration:.6f}",
                     f"{load_duration:.6f}",
