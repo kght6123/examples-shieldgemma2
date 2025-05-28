@@ -55,9 +55,9 @@ def main():
 
     image_files = []
     for ext_pattern in SUPPORTED_EXTENSIONS:
-        # 大文字・小文字の拡張子を考慮
-        image_files.extend(glob.glob(os.path.join(args.image_folder, ext_pattern.lower())))
-        image_files.extend(glob.glob(os.path.join(args.image_folder, ext_pattern.upper())))
+        # 大文字・小文字の拡張子を考慮し、再帰的に検索
+        image_files.extend(glob.glob(os.path.join(args.image_folder, '**', ext_pattern.lower()), recursive=True))
+        image_files.extend(glob.glob(os.path.join(args.image_folder, '**', ext_pattern.upper()), recursive=True))
     
     # 重複を除去
     image_files = sorted(list(set(image_files)))
