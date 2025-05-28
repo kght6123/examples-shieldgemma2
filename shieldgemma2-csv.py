@@ -13,7 +13,7 @@ CUSTOM_POLICIES = {
     "explicit_genitalia": "The image contains clearly visible and explicit human sexual organs (e.g., penis, vagina, anus).",
 }
 # 評価するポリシーの順序を定義 https://github.com/huggingface/transformers/blob/3b3ebcec4077f124f2cd0ec3cd5d028dc352a3e5/src/transformers/models/shieldgemma2/convert_shieldgemma2_weights_orbax_to_hf.py#L63
-POLICIES_TO_EVALUATE = ["explicit_genitalia", "dangerous", "sexual", "violence"]
+POLICIES_TO_EVALUATE = ["dangerous", "sexual", "violence", "explicit_genitalia"]
 
 # CSVヘッダー
 CSV_HEADER = [
