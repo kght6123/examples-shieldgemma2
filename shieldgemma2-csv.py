@@ -20,7 +20,9 @@ CSV_HEADER = [
     "filename", "Model", "Prompt", "Created At (JST)", "Total Duration",
     "Load Duration", "Prompt Eval Duration", "Eval Duration", "Content",
     "Porno", "NotGenital", "Porno Score", "NotGenital Score",
-    "Porno Reason Message", "NotGenital Reason Message", "Visible Genital Type"
+    "Porno Reason Message", "NotGenital Reason Message", "Visible Genital Type",
+    "Dangerous Score 1", "Dangerous Score 2",
+    "Violence Score 1", "Violence Score 2"
 ]
 
 # サポートする画像拡張子
@@ -112,6 +114,8 @@ def main():
                 # POLICIES_TO_EVALUATE の順序に基づいて確率を取得
                 porno_score_raw = output.probabilities[POLICIES_TO_EVALUATE.index("sexual")]
                 genitalia_covered_score_raw = output.probabilities[POLICIES_TO_EVALUATE.index("explicit_genitalia")]
+                dangerous_score_raw = output.probabilities[POLICIES_TO_EVALUATE.index("dangerous")]
+                violence_score_raw = output.probabilities[POLICIES_TO_EVALUATE.index("violence")]
 
                 porno_result = porno_score_raw[0] > 0.5
                 # CSVのNotGenitalは「覆われているか、性器がない」ポリシーの結果
@@ -121,6 +125,10 @@ def main():
                 porno_score_percent2 = int(porno_score_raw[1] * 100)
                 not_genital_score_percent1 = int(genitalia_covered_score_raw[0] * 100)
                 not_genital_score_percent2 = int(genitalia_covered_score_raw[1] * 100)
+                dangerous_score_percent1 = int(dangerous_score_raw[0] * 100)
+                dangerous_score_percent2 = int(dangerous_score_raw[1] * 100)
+                violence_score_percent1 = int(violence_score_raw[0] * 100)
+                violence_score_percent2 = int(violence_score_raw[1] * 100)
 
                 created_at_jst = datetime.now(timezone(timedelta(hours=9))).strftime('%Y-%m-%d %H:%M:%S')
                 
@@ -149,7 +157,11 @@ def main():
                     not_genital_score_percent1,
                     porno_score_percent2, # Porno Reason Message
 										not_genital_score_percent2, # NotGenital Reason Message
-                    "" # Visible Genital Type
+                    "", # Visible Genital Type
+                    dangerous_score_percent1,
+                    dangerous_score_percent2,
+                    violence_score_percent1,
+										violence_score_percent2
                 ]
                 csv_writer.writerow(row)
 
