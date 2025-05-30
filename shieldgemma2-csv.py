@@ -161,7 +161,7 @@ def main():
                     dangerous_score_percent1,
                     dangerous_score_percent2,
                     violence_score_percent1,
-										violence_score_percent2
+					violence_score_percent2
                 ]
                 csv_writer.writerow(row)
 
